@@ -23,6 +23,7 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import CategoryHome from "./pages/category/CategoryHome";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
+import Shop from "./pages/Shop";
 import SubHome from "./pages/sub/SubHome";
 import UserHistory from "./pages/user/UserHistory";
 import UserPassword from "./pages/user/UserPassword";
@@ -91,6 +92,7 @@ const App = () => {
         <Route exact path="/product/:slug" component={Product} />
         <Route exact path="/category/:slug" component={CategoryHome} />
         <Route exact path="/sub/:slug" component={SubHome} />
+        <Route exact path="/shop" component={Shop} />
       </Switch>
     </>
   );
