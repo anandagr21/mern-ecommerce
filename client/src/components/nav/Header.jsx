@@ -1,21 +1,24 @@
 import React, { useState } from "react";
-import { Menu } from "antd";
+import { Menu, Badge } from "antd";
 import {
   AppstoreOutlined,
   LogoutOutlined,
   SettingOutlined,
+  ShoppingCartOutlined,
+  ShoppingOutlined,
   UserAddOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Link, useHistory } from "react-router-dom";
 import firebase from "firebase";
 import { useDispatch, useSelector } from "react-redux";
+import Search from "../forms/Search";
 const { SubMenu } = Menu;
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => ({ ...state }));
+  const { user, cart } = useSelector((state) => ({ ...state }));
   let history = useHistory();
 
   const handleClick = (e) => {
@@ -37,6 +40,18 @@ const Header = () => {
     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
       <Menu.Item key="home" icon={<AppstoreOutlined />}>
         <Link to="/">Home </Link>
+      </Menu.Item>
+
+      <Menu.Item key="shop" icon={<ShoppingOutlined />}>
+        <Link to="/shop">Shop </Link>
+      </Menu.Item>
+
+      <Menu.Item key="cart" icon={<ShoppingCartOutlined />}>
+        <Link to="/cart">
+          <Badge count={cart.length} offset={[9, 0]}>
+            Cart
+          </Badge>
+        </Link>
       </Menu.Item>
 
       {user && (
@@ -83,6 +98,10 @@ const Header = () => {
           </Menu.Item>
         </>
       )}
+
+      <span className="float-right p-1">
+        <Search />
+      </span>
     </Menu>
   );
 };
