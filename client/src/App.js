@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SideDrawer from "./components/drawer/SideDrawer";
 import Header from "./components/nav/Header";
 import AdminRoute from "./components/routes/AdminRoute";
 import UserRoute from "./components/routes/UserRoute";
@@ -64,6 +65,7 @@ const App = () => {
   return (
     <>
       <Header />
+      <SideDrawer />
       <ToastContainer />
       <Switch>
         <Route exact path="/" component={Home} />
