@@ -12,6 +12,7 @@ import { currentUser } from "./functions/auth";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import CategoryCreate from "./pages/admin/category/CategoryCreate";
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
+import CreateCouponPage from "./pages/admin/coupon/CreateCouponPage";
 import AllProducts from "./pages/admin/product/AllProducts";
 import ProductCreate from "./pages/admin/product/ProductCreate";
 import ProductUpdate from "./pages/admin/product/ProductUpdate";
@@ -25,6 +26,7 @@ import Cart from "./pages/Cart";
 import CategoryHome from "./pages/category/CategoryHome";
 import Checkout from "./pages/Checkout";
 import Home from "./pages/Home";
+import Payment from "./pages/Payment";
 import Product from "./pages/Product";
 import Shop from "./pages/Shop";
 import SubHome from "./pages/sub/SubHome";
@@ -99,6 +101,8 @@ const App = () => {
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/cart" component={Cart} />
         <UserRoute exact path="/checkout" component={Checkout} />
+        <UserRoute exact path="/payment" component={Payment} />
+        <AdminRoute exact path="/admin/coupon" component={CreateCouponPage} />
       </Switch>
     </>
   );
