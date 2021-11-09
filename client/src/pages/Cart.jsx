@@ -28,6 +28,20 @@ const Cart = ({ history }) => {
       });
   };
 
+  const saveCashOrderToDb = () => {
+    dispatch({ type: "COD", payload: true });
+    userCart(cart, user.token)
+      .then((res) => {
+        console.log("Cart res", res);
+        if (res.data.ok) {
+          history.push("/checkout");
+        }
+      })
+      .catch((err) => {
+        console.log("cart save error", err);
+      });
+  };
+
   const showCartItems = () => {
     return (
       <table className="table table-bordered">
@@ -84,13 +98,23 @@ const Cart = ({ history }) => {
           Total: <b>${getTotal()}</b>
           <hr />
           {user ? (
-            <button
-              className="btn  btn-sm btn-primary mt-2"
-              onClick={saveOrderToDb}
-              disabled={!cart.length}
-            >
-              Proceed to Checkout
-            </button>
+            <>
+              <button
+                className="btn  btn-sm btn-primary mt-2"
+                onClick={saveOrderToDb}
+                disabled={!cart.length}
+              >
+                Proceed to Checkout
+              </button>
+              <br />
+              <button
+                className="btn  btn-sm btn-warning mt-2"
+                onClick={saveCashOrderToDb}
+                disabled={!cart.length}
+              >
+                Pay cash on delievery
+              </button>
+            </>
           ) : (
             <button className="btn btn-sm btn-primary mt-2">
               <Link to={{ pathname: "/login", state: { from: "cart" } }}>
